@@ -1,0 +1,41 @@
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,600,700,900&amp;lang=en');
+
+/* general */
+
+* {
+    font-family: 'Ubuntu' !important;
+}
+
+html,body {
+  background-color: #16171b !important;
+  color:#9f9f9f;
+}
+
+/* Links */
+
+.navlink {
+    text-decoration: none;
+    color:white;
+    width: 100%;
+}
+
+/* Avatar Border */
+
+.MuiAvatar-root {
+    border: 1px solid #121212 !important;
+}
+
+/* Scrollbar Hide */
+
+.hidescrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.hidescrollbar::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* Code Highlight */
+
