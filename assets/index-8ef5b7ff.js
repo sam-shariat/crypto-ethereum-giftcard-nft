@@ -12,7 +12,7 @@ import "./elliptic-f2b24f57.js";
 import "./index-2c674280.js";
 import "./url-d0ea8fe9.js";
 import "./index-1b9e19c3.js";
-import "./_commonjs-dynamic-modules-58f2b0ec.js";
+import "./commonjs-dynamic-modules-58f2b0ec.js";
 var require_index_001 = __commonJS({
   "assets/index-8ef5b7ff.js"(exports, module) {
     (function polyfill() {
