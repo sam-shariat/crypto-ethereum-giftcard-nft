@@ -1,20 +1,37 @@
-import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-09fa042d.js";import"./openlogin.esm-3de162c4.js";import"./base.esm-e36f3d2a.js";import"./elliptic-75fd6b2c.js";import"./index-2a7c4012.js";import"./index-346e2c9d.js";import"./url-5da867a5.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const t=r`
+import {
+  q as r,
+  s as l,
+  t as o,
+  v as a,
+  w as n,
+  x as s,
+} from "./index-09fa042d.js";
+import "./openlogin.esm-3de162c4.js";
+import "./base.esm-e36f3d2a.js";
+import "./elliptic-75fd6b2c.js";
+import "./index-2a7c4012.js";
+import "./index-346e2c9d.js";
+import "./url-5da867a5.js";
+import "./index-2a1b3d9a.js";
+import "./commonjs-dynamic-modules-302442b1.js";
+const t = r`
     :after {
-        background-color: ${l("light",90)};
+        background-color: ${l("light", 90)};
     }
 
     :hover {
         :after {
-            background-color: ${l("light",70)};
+            background-color: ${l("light", 70)};
         }
     }
 
     :active {
         :after {
-            background-color: ${l("light",50)};
+            background-color: ${l("light", 50)};
         }
     }
-`,d=r`
+`,
+  d = r`
     background-color: ${o.red};
     border-color: ${o.red};
     color: ${o.red};
@@ -28,7 +45,8 @@ import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-09fa042d.js";impor
     }
 
     ${t}
-`,$=r`
+`,
+  $ = r`
     background-color: ${o.green};
     border-color: ${o.green};
     color: ${o.green};
@@ -42,7 +60,8 @@ import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-09fa042d.js";impor
     }
 
     ${t}
-`,u=r`
+`,
+  u = r`
     background-color: ${o.blue};
     border-color: ${o.blue};
     color: ${o.blue};
@@ -56,7 +75,8 @@ import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-09fa042d.js";impor
     }
 
     ${t}
-`,p=r`
+`,
+  p = r`
     background-color: ${o.yellow};
     border-color: ${o.yellow};
     color: ${o.yellow};
@@ -70,9 +90,24 @@ import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-09fa042d.js";impor
     }
 
     ${t}
-`,i=e=>{switch(e){case"red":return d;case"green":return $;case"blue":return u;case"yellow":return p;default:return}},x=a(s)`
+`,
+  i = (e) => {
+    switch (e) {
+      case "red":
+        return d;
+      case "green":
+        return $;
+      case "blue":
+        return u;
+      case "yellow":
+        return p;
+      default:
+        return;
+    }
+  },
+  x = a(s)`
     :after {
-        background-color: ${l("dark",0)};
+        background-color: ${l("dark", 0)};
         content: '';
         display: block;
         height: 100%;
@@ -85,5 +120,9 @@ import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-09fa042d.js";impor
         z-index: 0;
     }
 
-    ${({color:e})=>e&&i(e)}
-`;var b={ButtonColoredStyled:x};const{ButtonColoredStyled:g}=b,S=({color:e,...c})=>n(g,{color:e,...c});export{S as default};
+    ${({ color: e }) => e && i(e)}
+`;
+var b = { ButtonColoredStyled: x };
+const { ButtonColoredStyled: g } = b,
+  S = ({ color: e, ...c }) => n(g, { color: e, ...c });
+export { S as default };

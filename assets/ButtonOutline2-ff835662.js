@@ -1,4 +1,13 @@
-import{E as r,D as o,J as e,G as l,H as u}from"./index-09fa042d.js";import"./openlogin.esm-3de162c4.js";import"./base.esm-e36f3d2a.js";import"./elliptic-75fd6b2c.js";import"./index-2a7c4012.js";import"./index-346e2c9d.js";import"./url-5da867a5.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const a=r(u)`
+import { E as r, D as o, J as e, G as l, H as u } from "./index-09fa042d.js";
+import "./openlogin.esm-3de162c4.js";
+import "./base.esm-e36f3d2a.js";
+import "./elliptic-75fd6b2c.js";
+import "./index-2a7c4012.js";
+import "./index-346e2c9d.js";
+import "./url-5da867a5.js";
+import "./index-2a1b3d9a.js";
+import "./commonjs-dynamic-modules-302442b1.js";
+const a = r(u)`
     background-color: ${o.white};
     border-color: ${o.beauBlue};
     color: ${o.blue};
@@ -24,4 +33,8 @@ import{E as r,D as o,J as e,G as l,H as u}from"./index-09fa042d.js";import"./ope
     svg {
         color: ${o.blue};
     }
-`;var s={ButtonOutlineStyled:a};const{ButtonOutlineStyled:p}=s,g=({...t})=>l(p,{...t});export{g as default};
+`;
+var s = { ButtonOutlineStyled: a };
+const { ButtonOutlineStyled: p } = s,
+  g = ({ ...t }) => l(p, { ...t });
+export { g as default };
