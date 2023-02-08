@@ -1,4 +1,4 @@
-import{E as t,D as o,G as a,H as e}from"./index-45f412d8.js";import"./openlogin.esm-ab039618.js";import"./base.esm-a6e8b20d.js";import"./elliptic-aa16d8cf.js";import"./index-66434860.js";import"./index-50a7582d.js";import"./url-4a71cc4c.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const i=t(e)`
+import{E as t,D as o,G as a,H as e}from"./index-b911830a.js";import"./openlogin.esm-ab039618.js";import"./base.esm-a6e8b20d.js";import"./elliptic-aa16d8cf.js";import"./index-66434860.js";import"./index-50a7582d.js";import"./url-4a71cc4c.js";import"./index-2a1b3d9a.js";const i=t(e)`
     background-color: ${o.green};
     border-color: ${o.greenLight};
     color: ${o.white};
@@ -32,4 +32,4 @@ import{E as t,D as o,G as a,H as e}from"./index-45f412d8.js";import"./openlogin.
     svg {
         fill: ${o.white};
     }
-`;var d={ButtonPrimaryStyled:i};const{ButtonPrimaryStyled:n}=d,y=({...r})=>a(n,{...r});export{y as default};
+`;var d={ButtonPrimaryStyled:i};const{ButtonPrimaryStyled:n}=d,$=({...r})=>a(n,{...r});export{$ as default};

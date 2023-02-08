@@ -1,4 +1,4 @@
-import{E as e,A as r,G as n,H as a}from"./index-45f412d8.js";import"./openlogin.esm-ab039618.js";import"./base.esm-a6e8b20d.js";import"./elliptic-aa16d8cf.js";import"./index-66434860.js";import"./index-50a7582d.js";import"./url-4a71cc4c.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const l=e(a)`
+import{E as e,A as r,G as n,H as a}from"./index-b911830a.js";import"./openlogin.esm-ab039618.js";import"./base.esm-a6e8b20d.js";import"./elliptic-aa16d8cf.js";import"./index-66434860.js";import"./index-50a7582d.js";import"./url-4a71cc4c.js";import"./index-2a1b3d9a.js";const l=e(a)`
     background-color: ${t=>{var o;return(o=t.customize)==null?void 0:o.backgroundColor}};
 
     span {
@@ -37,4 +37,4 @@ import{E as e,A as r,G as n,H as a}from"./index-45f412d8.js";import"./openlogin.
             background-color: ${t=>{var o;return((o=t.customize)==null?void 0:o.onHover)==="lighten"?r("light",40):r("dark",40)}};
         }
     }
-`;var i={ButtonCustomStyled:l};const{ButtonCustomStyled:u}=i,z=({customize:t,...o})=>n(u,{customize:t,...o});export{z as default};
+`;var u={ButtonCustomStyled:l};const{ButtonCustomStyled:i}=u,k=({customize:t,...o})=>n(i,{customize:t,...o});export{k as default};

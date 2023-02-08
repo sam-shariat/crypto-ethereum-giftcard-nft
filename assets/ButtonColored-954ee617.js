@@ -1,4 +1,4 @@
-import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-45f412d8.js";import"./openlogin.esm-ab039618.js";import"./base.esm-a6e8b20d.js";import"./elliptic-aa16d8cf.js";import"./index-66434860.js";import"./index-50a7582d.js";import"./url-4a71cc4c.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const t=r`
+import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-b911830a.js";import"./openlogin.esm-ab039618.js";import"./base.esm-a6e8b20d.js";import"./elliptic-aa16d8cf.js";import"./index-66434860.js";import"./index-50a7582d.js";import"./url-4a71cc4c.js";import"./index-2a1b3d9a.js";const t=r`
     :after {
         background-color: ${l("light",90)};
     }
@@ -86,4 +86,4 @@ import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-45f412d8.js";impor
     }
 
     ${({color:e})=>e&&i(e)}
-`;var b={ButtonColoredStyled:x};const{ButtonColoredStyled:g}=b,S=({color:e,...c})=>n(g,{color:e,...c});export{S as default};
+`;var b={ButtonColoredStyled:x};const{ButtonColoredStyled:g}=b,B=({color:e,...c})=>n(g,{color:e,...c});export{B as default};

@@ -1,4 +1,4 @@
-import{a9 as yo,aa as wo,ab as vo,r as bo,a7 as Ra,g as ur,ac as Ta,ad as Ua,ae as La,af as Ca,ag as Fa,ah as Pa,ai as Oa,H as Na,e as rn,C as Gn,V as Zt,aj as Ts,W as Xi,J as Yi,ak as kn,al as ui}from"./base.esm-a6e8b20d.js";import{B as Ji,p as Qi,d as Da}from"./baseProvider.esm-c4ad26ac.js";import{i as ts}from"./interopRequireDefault-a67edd7c.js";import{r as xo}from"./index-66434860.js";import{n as qa}from"./nacl-fast-7573eba1.js";var zt={};/*!
+import{a9 as yo,aa as wo,ab as vo,r as bo,a7 as Ra,g as ur,ac as Ta,ad as Ua,ae as La,af as Ca,ag as Fa,ah as Pa,ai as Oa,H as Na,e as rn,C as Gn,V as Zt,aj as Ts,W as Xi,J as Yi,ak as kn,al as ui}from"./base.esm-a6e8b20d.js";import{B as Ji,p as Qi,d as Da}from"./baseProvider.esm-44285fe5.js";import{i as ts}from"./interopRequireDefault-a67edd7c.js";import{r as xo}from"./index-66434860.js";import{n as qa}from"./nacl-fast-4317c610.js";var zt={};/*!
  * The buffer module from node.js, for the browser.
  *
  * @author   Feross Aboukhadijeh <https://feross.org>
