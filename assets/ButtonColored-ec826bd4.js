@@ -1,4 +1,4 @@
-import{z as r,A as l,D as o,E as a,G as n,H as s}from"./index-72d3d71e.js";import"./openlogin.esm-5be36648.js";import"./base.esm-e36f3d2a.js";import"./elliptic-75fd6b2c.js";import"./index-2a7c4012.js";import"./index-346e2c9d.js";import"./url-5da867a5.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const t=r`
+import{q as r,s as l,t as o,v as a,w as n,x as s}from"./index-2134362f.js";import"./openlogin.esm-3de162c4.js";import"./base.esm-e36f3d2a.js";import"./elliptic-75fd6b2c.js";import"./index-2a7c4012.js";import"./index-346e2c9d.js";import"./url-5da867a5.js";import"./index-2a1b3d9a.js";import"./_commonjs-dynamic-modules-302442b1.js";const t=r`
     :after {
         background-color: ${l("light",90)};
     }
@@ -70,7 +70,7 @@ import{z as r,A as l,D as o,E as a,G as n,H as s}from"./index-72d3d71e.js";impor
     }
 
     ${t}
-`,i=e=>{switch(e){case"red":return d;case"green":return $;case"blue":return u;case"yellow":return p;default:return}},b=a(s)`
+`,i=e=>{switch(e){case"red":return d;case"green":return $;case"blue":return u;case"yellow":return p;default:return}},x=a(s)`
     :after {
         background-color: ${l("dark",0)};
         content: '';
@@ -86,4 +86,4 @@ import{z as r,A as l,D as o,E as a,G as n,H as s}from"./index-72d3d71e.js";impor
     }
 
     ${({color:e})=>e&&i(e)}
-`;var g={ButtonColoredStyled:b};const{ButtonColoredStyled:x}=g,S=({color:e,...c})=>n(x,{color:e,...c});export{S as default};
+`;var b={ButtonColoredStyled:x};const{ButtonColoredStyled:g}=b,S=({color:e,...c})=>n(g,{color:e,...c});export{S as default};
