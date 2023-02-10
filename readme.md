@@ -7,10 +7,14 @@
 <br/>
 <h3 align="left"><a href="https://sam-shariat.github.io/crypto-ethereum-giftcard-nft/" target="_blank">Live Demo</a></h3>
 
-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+#### This project was bootstrapped with :
+
+- GiftCard Solidity Contract [giftcard-nft](https://github.com/sam-shariat/giftcard-nft)
+- Create React App [Create React App](https://github.com/facebook/create-react-app)
 - Moralis : [react-moralis](https://github.com/MoralisWeb3/react-moralis)
 - Web3uikit : [web3uikit](https://github.com/web3ui/web3uikit)
 - Web3.js : [web3.js](https://github.com/web3/web3.js)
+- Material UI [@mui/material](https://github.com/mui/material-ui)
 
 ## :point_down: Features
 
