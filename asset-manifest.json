@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/crypto-ethereum-giftcard-nft/static/css/main.dbe38420.css",
-    "main.js": "/crypto-ethereum-giftcard-nft/static/js/main.3735220f.js",
+    "main.js": "/crypto-ethereum-giftcard-nft/static/js/main.26876170.js",
     "static/js/862.a57a24af.chunk.js": "/crypto-ethereum-giftcard-nft/static/js/862.a57a24af.chunk.js",
     "static/js/940.aa337b10.chunk.js": "/crypto-ethereum-giftcard-nft/static/js/940.aa337b10.chunk.js",
     "static/js/389.4c3cceae.chunk.js": "/crypto-ethereum-giftcard-nft/static/js/389.4c3cceae.chunk.js",
@@ -32,7 +32,7 @@
     "static/media/background-cryptolyzed.jpg": "/crypto-ethereum-giftcard-nft/static/media/background-cryptolyzed.f3334b2494425cf136b3.jpg",
     "index.html": "/crypto-ethereum-giftcard-nft/index.html",
     "main.dbe38420.css.map": "/crypto-ethereum-giftcard-nft/static/css/main.dbe38420.css.map",
-    "main.3735220f.js.map": "/crypto-ethereum-giftcard-nft/static/js/main.3735220f.js.map",
+    "main.26876170.js.map": "/crypto-ethereum-giftcard-nft/static/js/main.26876170.js.map",
     "389.4c3cceae.chunk.js.map": "/crypto-ethereum-giftcard-nft/static/js/389.4c3cceae.chunk.js.map",
     "770.2fbb961a.chunk.js.map": "/crypto-ethereum-giftcard-nft/static/js/770.2fbb961a.chunk.js.map",
     "898.35379dad.chunk.js.map": "/crypto-ethereum-giftcard-nft/static/js/898.35379dad.chunk.js.map",
@@ -59,6 +59,6 @@
   },
   "entrypoints": [
     "static/css/main.dbe38420.css",
-    "static/js/main.3735220f.js"
+    "static/js/main.26876170.js"
   ]
 }
