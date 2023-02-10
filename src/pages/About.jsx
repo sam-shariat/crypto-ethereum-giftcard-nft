@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import { Container, Grid, Link } from "@mui/material";
 import Copyright from "../components/nav/Copyright";
 import NavBar from "../components/nav/NavBar";
+import { SOCIAL_LINKS } from "../constants/constants";
 
 const title = "About";
 
@@ -82,7 +83,7 @@ const About = (props) => {
               <Grid item md={4} xs={12}>
                 <Button
                   LinkComponent={Link}
-                  href="https://twitter.com/samywalters"
+                  href={SOCIAL_LINKS.twitter}
                   target={"_blank"}
                   variant="outlined"
                   sx={{ height: 120, width: "100%" }}
@@ -102,7 +103,7 @@ const About = (props) => {
               <Grid item md={4} xs={12}>
                 <Button
                   LinkComponent={Link}
-                  href="mailto:moslem.shariat@gmail.com"
+                  href={SOCIAL_LINKS.email}
                   target={"_blank"}
                   variant="outlined"
                   sx={{ height: 120 }}
@@ -122,7 +123,7 @@ const About = (props) => {
               <Grid item md={4} xs={12}>
                 <Button
                   LinkComponent={Link}
-                  href="#"
+                  href={SOCIAL_LINKS.github}
                   target={"_blank"}
                   variant="outlined"
                   sx={{ height: 120 }}

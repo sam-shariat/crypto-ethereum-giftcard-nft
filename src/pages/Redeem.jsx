@@ -10,6 +10,9 @@ import {
   Toolbar,
   Typography,
   IconButton,
+  Modal,
+  Button,
+  TextField,
 } from "@mui/material";
 import Copyright from "../components/nav/Copyright";
 import NavBar from "../components/nav/NavBar";
@@ -18,16 +21,20 @@ import GiftCard from "../components/GiftCard";
 import Web3 from "web3";
 import { useApolloClient } from "@apollo/client";
 import GET_MY_NFTS from "../constants/subgraphQueries";
-import { Loading, useNotification, Bell, Modal, Input } from "web3uikit";
+import { Loading, useNotification, Bell, Input } from "web3uikit";
 import { sleep } from "../utils/functions";
-import { BG_COLOR } from "../constants/constants";
+import { ethers } from "ethers";
 import { Launch } from "@mui/icons-material";
+import { Buffer } from "buffer";
+import { MODAL_STYLE } from "../constants/constants";
+import { useTour } from "@reactour/tour";
+
 const web3 = new Web3(Web3.givenProvider);
 
 const title = "Redeem";
 
 const Redeem = (props) => {
-  const { isWeb3Enabled, web3: webb, Moralis } = useMoralis();
+  const { isWeb3Enabled, web3: webb, account } = useMoralis();
   const { query } = useApolloClient();
   const [contractAddress, setContractAddress] = useState();
   const [contractAbi, setContractAbi] = useState();
@@ -48,6 +55,7 @@ const Redeem = (props) => {
   const [allRedeemed, setAllRedeemed] = useState(null);
   const [redeemeds, setRedeemeds] = useState(null);
   const [priceIsLoading, setPriceIsLoading] = useState(false);
+  const { setIsOpen } = useTour();
   const [walletAddress, setWalletAddress] = useState(
     web3.currentProvider.selectedAddress
   );
@@ -297,6 +305,18 @@ const Redeem = (props) => {
     }
   }, [isWeb3Enabled]);
 
+  useEffect(()=> {
+    async function checkTour(){
+      await sleep(2000);
+      if (!account) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    };
+    checkTour();
+  },[account])
+
   useEffect(() => {
     updateTokenURIs();
   }, [selectedTokenIndex]);
@@ -368,24 +388,25 @@ const Redeem = (props) => {
         </Box>
         {isRedeemingOpen && (
           <Modal
-            title={`Redeeming ${myURIs[redeemIndex].description}`}
-            isVisible={isRedeemingOpen}
-            id="RedeemingModal"
-            zIndex={999}
-            onCancel={() => !isRedeeming && setIsRedeemingOpen(false)}
-            onCloseButtonPressed={() =>
-              !isRedeeming && setIsRedeemingOpen(false)
-            }
-            onOk={() => !isRedeeming && doRedeem()}
+            open={isRedeemingOpen}
+            onClose={() => !isRedeeming && setIsRedeemingOpen(false)}
+            aria-labelledby="redeem-modal"
           >
-            <Box
+            <Paper
               sx={{
-                p: 2,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
+                ...MODAL_STYLE,
               }}
             >
+              <Typography
+                variant="h6"
+                p={2}
+                borderBottom={"solid 1px #333333"}
+                width={"100%"}
+              >
+                Redeeming {myURIs[redeemIndex].description}
+              </Typography>
               <Box sx={{ p: 2 }}>
                 <Typography>
                   Redeeming GiftCard Worth{" "}
@@ -397,47 +418,65 @@ const Redeem = (props) => {
                   </b>{" "}
                   Into <b>{myNfts[redeemIndex].destination}</b>
                 </Typography>
-              </Box>
-              <div>
+              
+              <Box pt={2}>
                 {isRedeeming ? (
                   <Loading
                     direction="right"
-                    spinnerColor="#222222"
+                    spinnerColor="#ffffff"
                     spinnerType="wave"
                     size="large"
                   />
                 ) : (
                   <Typography>
-                    Please Confirm Redeem By Pressing <b>Ok</b>
+                    Please Confirm Redeem By Pressing <b>REDEEM</b>
                   </Typography>
                 )}
-              </div>
-            </Box>
+              </Box>
+              </Box>
+              <Box
+                display={"flex"}
+                borderTop={"solid 1px #333333"}
+                p={2}
+                gap={1}
+                justifyContent={"end"}
+              >
+                <Button size="large" onClick={() => doRedeem()} variant="outlined">
+                  Redeem
+                </Button>
+                <Button size="large"
+                  onClick={() => !isRedeeming && setIsRedeemingOpen(false)}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            </Paper>
           </Modal>
         )}
 
         {isTransferingOpen && (
           <Modal
-            title={`Transferring ${myURIs[transferIndex].description}`}
-            isVisible={isTransferingOpen}
+            open={isTransferingOpen}
             id="TransferringModal"
-            zIndex={9999}
-            onCancel={() => !isTransfering && setIsTransferingOpen(false)}
-            onCloseButtonPressed={() =>
-              !isTransfering && setIsTransferingOpen(false)
-            }
-            onOk={() => doTransfer()}
+            onClose={() => !isTransfering && setIsTransferingOpen(false)}
           >
-            <Box
+            <Paper
               sx={{
-                p: 2,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
+                ...MODAL_STYLE,
               }}
             >
-              <Box sx={{ pb: 3 }}>
-                <Typography>
+              <Typography
+                variant="h6"
+                p={2}
+                borderBottom={"solid 1px #333333"}
+                width={"100%"}
+              >
+                Transferring {myURIs[transferIndex].description}
+              </Typography>
+              <Box sx={{ p: 2 }}>
+                <Typography mb={2}>
                   Transferring GiftCard Worth{" "}
                   <b>
                     {myNfts[transferIndex].value == 0
@@ -447,31 +486,48 @@ const Redeem = (props) => {
                   </b>{" "}
                   To{" "}
                 </Typography>
+
+                <TextField
+                  label="Destination Wallet Address e.g. 0x..."
+                  value={transferWallet}
+                  InputProps={{ style: { borderRadius: "10px" } }}
+                  onChange={(e) => {
+                    setTransferWallet(e.currentTarget.value);
+                  }}
+                  fullWidth
+                />
+                <Box mt={1}>
+                  {isTransfering ? (
+                    <Loading
+                      direction="right"
+                      spinnerColor="#ffffff"
+                      spinnerType="wave"
+                      size="large"
+                    />
+                  ) : (
+                    <Typography>
+                      Please Confirm Transfer By Pressing <b>TRANSFER</b>
+                    </Typography>
+                  )}
+                </Box>
               </Box>
-              <Input
-                label="Destination Wallet Address e.g. 0x..."
-                labelBgColor={"white"}
-                value={transferWallet}
-                onChange={(e) => {
-                  setTransferWallet(e.currentTarget.value);
-                }}
-                style={{ flexGrow: 1 }}
-              />
-              <Box sx={{ pt: 2 }}>
-                {isTransfering ? (
-                  <Loading
-                    direction="right"
-                    spinnerColor="#222222"
-                    spinnerType="wave"
-                    size="large"
-                  />
-                ) : (
-                  <Typography>
-                    Please Confirm Transfer By Pressing <b>Ok</b>
-                  </Typography>
-                )}
+              <Box
+                display="flex"
+                p={2}
+                gap={1}
+                borderTop={"solid 1px #333333"}
+                justifyContent={"end"}
+              >
+                <Button size="large" disabled={!ethers.utils.isAddress(transferWallet)} onClick={() => doTransfer()} variant="outlined">
+                  Transfer
+                </Button>
+                <Button size="large"
+                  onClick={() => !isTransfering && setIsTransferingOpen(false)}
+                >
+                  Cancel
+                </Button>
               </Box>
-            </Box>
+            </Paper>
           </Modal>
         )}
       </Box>

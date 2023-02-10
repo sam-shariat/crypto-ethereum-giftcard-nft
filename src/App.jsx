@@ -11,10 +11,26 @@ export default function App() {
     <div style={{ height: "100%" }}>
       <Router /*  history={history}> */>
         <Routes>
-          <Route exact path="/cryptogiftcard/" element={<Home />} />
-          <Route exact path="/cryptogiftcard/mint" element={<Mint />} />
-          <Route exact path="/cryptogiftcard/redeem" element={<Redeem />} />
-          <Route exact path="/cryptogiftcard/about" element={<About />} />
+          <Route
+            exact
+            path="/crypto-ethereum-giftcard-nft/"
+            element={<Home />}
+          />
+          <Route
+            exact
+            path="/crypto-ethereum-giftcard-nft/mint"
+            element={<Mint />}
+          />
+          <Route
+            exact
+            path="/crypto-ethereum-giftcard-nft/redeem"
+            element={<Redeem />}
+          />
+          <Route
+            exact
+            path="/crypto-ethereum-giftcard-nft/about"
+            element={<About />}
+          />
         </Routes>
       </Router>
     </div>

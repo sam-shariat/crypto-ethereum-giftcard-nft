@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Paper, Box, ButtonBase, IconButton } from "@mui/material";
+import { Paper, Box, ButtonBase, IconButton, Button } from "@mui/material";
 import { Loading, Tooltip, Typography } from "web3uikit";
 import { BG_COLOR, BORDER_COLOR } from "../constants/constants";
 import Web3 from "web3";
@@ -19,9 +19,8 @@ export default function GiftCard({
       sx={{
         p: 1.5,
         borderRadius: "10px",
-        border: "solid 2px transparent",
         ":hover": {
-          border: "solid 2px #777",
+          backgroundColor: "#070707",
         },
       }}
     >
@@ -79,37 +78,29 @@ export default function GiftCard({
                 onClick={(e) => onRedeemClick(e.currentTarget.value)}
                 disabled={nft.isRedeemed}
               >
-                <Paper
+                <Button
                   sx={{
-                    backgroundColor: BG_COLOR,
-                    p: "12px",
-                    borderRadius: "10px",
-                    border: nft.isRedeemed
-                      ? "2px solid transparent"
-                      : "2px solid",
-                    borderColor: BORDER_COLOR,
+                    borderRadius: "10px"
                   }}
+                  variant="outlined"
                 >
                   Redeem GiftCard
-                </Paper>
+                </Button>
               </ButtonBase>
             )}
             <ButtonBase
               sx={{ borderRadius: "10px", mt: 3 }}
               value={index}
               onClick={(e) => onTransferClick(e.currentTarget.value)}
-            >
-              <Paper
-                sx={{
-                  backgroundColor: BG_COLOR,
-                  p: "12px",
-                  borderRadius: "10px",
-                  border: "2px solid",
-                  borderColor: BORDER_COLOR,
-                }}
               >
+                <Button
+                  sx={{
+                    borderRadius: "10px"
+                  }}
+                  variant="outlined"
+                >
                 Transfer GiftCard
-              </Paper>
+                </Button>
             </ButtonBase>
           </Box>
         </Box>

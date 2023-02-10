@@ -5,24 +5,30 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Helmet } from "react-helmet";
-import { Container, Grid, ButtonBase, Paper, IconButton } from "@mui/material";
+import { useTour } from "@reactour/tour";
+import {
+  Container,
+  Alert,
+  AlertTitle,
+  Collapse,
+  Grid,
+  ButtonBase,
+  Paper,
+  IconButton,
+  TextField,
+  Button,
+} from "@mui/material";
 import Copyright from "../components/nav/Copyright";
 import NavBar from "../components/nav/NavBar";
 import contracts from "../constants/contracts.json";
-import {
-  Input,
-  Button,
-  Loading,
-  useNotification,
-  Bell,
-  Modal,
-  BannerStrip,
-} from "web3uikit";
-import { BG_COLOR, RANDOM_WISHES } from "../constants/constants";
+import { Loading, useNotification, Bell, Modal } from "web3uikit";
+import { MODAL_STYLE, RANDOM_WISHES } from "../constants/constants";
 import { ethers } from "ethers";
 import { Close, Launch } from "@mui/icons-material";
 import GiftCardSVG from "../components/GiftCardSVG";
 import Web3 from "web3";
+import { Link } from "react-router-dom";
+import { sleep } from "../utils/functions";
 const web3 = new Web3(Web3.givenProvider);
 
 const title = "Mint";
@@ -33,9 +39,7 @@ const Mint = (props) => {
   const [pickedColorIndex, setPickedColorIndex] = useState(0);
   const [colorCodes, setColorCodes] = useState([]);
   const [value, setValue] = useState(0);
-  const [walletAddress, setWalletAddress] = useState(
-    web3.currentProvider.selectedAddress
-  );
+  const [walletAddress, setWalletAddress] = useState(account ? account : "");
   const [contractAddress, setContractAddress] = useState();
   const [contractAbi, setContractAbi] = useState();
   const [textValue, setTextValue] = useState("");
@@ -48,6 +52,7 @@ const Mint = (props) => {
   const [isMinting, setIsMinting] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
   const [minted, setMinted] = useState();
+  const { setIsOpen } = useTour();
   const dispatch = useNotification();
 
   const {
@@ -61,9 +66,7 @@ const Mint = (props) => {
     functionName: "safeMint",
     msgValue: value > 0 ? ethers.utils.parseEther(String(value)) : "0",
     params: {
-      to: walletAddress
-        ? ethers.utils.getAddress(walletAddress)
-        : web3.currentProvider.selectedAddress,
+      to: walletAddress ? ethers.utils.getAddress(walletAddress) : account,
       text: textValue,
       color: pickedColorIndex,
     },
@@ -196,15 +199,10 @@ const Mint = (props) => {
           contractAbi,
           contractAddress
         );
-        const gasPrice = await web3.eth.getGasPrice();
         const feeData = await webb.getFeeData();
         const maxGasPrice = feeData.maxPriorityFeePerGas.toString();
         GiftCard.methods
-          .safeMint(
-            web3.currentProvider.selectedAddress,
-            textValue,
-            pickedColorIndex
-          )
+          .safeMint(account, textValue, pickedColorIndex)
           .estimateGas(
             {
               from: web3.currentProvider.selectedAddress,
@@ -275,6 +273,18 @@ const Mint = (props) => {
     }
   }, [contracts]);
 
+  useEffect(()=> {
+    async function checkTour(){
+      await sleep(2000);
+      if (!account) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    };
+    checkTour();
+  },[account])
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -283,7 +293,19 @@ const Mint = (props) => {
           <title>Crypto Ethereum Gift Cards NFT | {title} </title>
         </Helmet>
         <NavBar />
-        <Box component="main" sx={{ width: "100%", p: 3 }}>
+        <Box
+          component="main"
+          sx={{
+            width: "100%",
+            p: {
+              xl: 3,
+              lg: 3,
+              md: 2,
+              sm: 2,
+              xs: 1,
+            },
+          }}
+        >
           <Toolbar />
           <Container maxWidth="lg">
             <Grid container spacing={2} alignItems="center">
@@ -297,46 +319,38 @@ const Mint = (props) => {
                   </Typography>
                 </Box>
               </Grid>
-
               {minted && (
                 <Grid item md={12} xs={12}>
-                  <BannerStrip
-                    type="success"
-                    height="80px"
-                    width="100%"
-                    isCloseBtnVisible={false}
-                    position="relative"
-                    text={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          alignContent: "space-between",
-                          flexDirection: "row",
-                          width: "100%",
-                        }}
-                      >
-                        <Box>
-                          GiftCard NFT has been succesfully minted.
-                          <a
-                            href={minted}
-                            target="_blank"
-                            style={{ paddingLeft: 8 }}
-                          >
-                            View on Opensea
-                          </a>
-                        </Box>
-                        <Box>
+                  <Collapse in={minted}>
+                    <Alert
+                      variant="standard"
+                      se
+                      action={
+                        <Box display={"flex"} gap={1}>
+                          <Button LinkComponent={Link} href={minted}>
+                            View On Opensea
+                          </Button>
                           <IconButton
-                            sx={{ p: 1 }}
-                            onClick={() => setMinted(null)}
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                              setMinted(null);
+                            }}
                           >
                             <Close />
                           </IconButton>
                         </Box>
-                      </Box>
-                    }
-                  />
+                      }
+                      sx={{ mb: 2 }}
+                      severity="success"
+                    >
+                      <AlertTitle>
+                        <b>Congratulations</b>
+                      </AlertTitle>
+                      GiftCard NFT Minted Successfully.
+                    </Alert>
+                  </Collapse>
                 </Grid>
               )}
               <Grid item md={6} xs={12}>
@@ -358,23 +372,23 @@ const Mint = (props) => {
                       item
                       sx={{ display: "flex", flexGrow: 1, gap: 1, pt: 2 }}
                     >
-                      <Input
+                      <TextField
                         label="Enter the value in ETH (e.g. 0.5)"
-                        labelBgColor={"#151515"}
+                        variant="outlined"
                         value={value}
                         type="number"
+                        InputProps={{ style: { borderRadius: "10px" } }}
                         onChange={(e) => {
                           setValue(e.currentTarget.value);
                           setEthValue(
                             Math.round(e.currentTarget.value * ethPrice)
                           );
                         }}
-                        size="large"
+                        size="big"
                         style={{
-                          flexGrow: 1,
-                          color: value > 0 ? "#ffffff" : "#5b738d",
                           backgroundColor: "#151515",
                         }}
+                        fullWidth
                       />
                     </Grid>
                     <Grid
@@ -393,19 +407,25 @@ const Mint = (props) => {
                     >
                       <Button
                         onClick={() => updateValue(100)}
-                        text="$100"
-                        theme="moneyPrimary"
-                      />
+                        variant="outlined"
+                        sx={{ borderRadius: "10px" }}
+                      >
+                        $100
+                      </Button>
                       <Button
                         onClick={() => updateValue(500)}
-                        text="$500"
-                        theme="moneyPrimary"
-                      />
+                        variant="outlined"
+                        sx={{ borderRadius: "10px" }}
+                      >
+                        $500
+                      </Button>
                       <Button
                         onClick={() => updateValue(1000)}
-                        text="$1000"
-                        theme="moneyPrimary"
-                      />
+                        variant="outlined"
+                        sx={{ borderRadius: "10px" }}
+                      >
+                        $1000
+                      </Button>
                     </Grid>
                   </Grid>
                 </Container>
@@ -413,52 +433,57 @@ const Mint = (props) => {
                   sx={{
                     display: "flex",
                     gap: 1,
-                    pt: 6,
+                    pt: 4,
                   }}
                 >
-                  <Input
+                  <TextField
                     label="Wallet Address (e.g. 0xD2D12...001CE)"
-                    labelBgColor={BG_COLOR}
+                    variant="outlined"
                     value={walletAddress}
+                    InputProps={{ style: { borderRadius: "10px" } }}
                     onChange={(e) => {
                       setWalletAddress(e.currentTarget.value);
                     }}
-                    style={{ flexGrow: 1 }}
+                    fullWidth
                   />
                   <Button
                     onClick={(e) => {
                       setWalletAddress(account);
                     }}
-                    text="My Wallet"
-                    theme="moneyPrimary"
-                  />
+                    variant="outlined"
+                    sx={{ borderRadius: "10px" }}
+                  >
+                    MyWallet
+                  </Button>
                 </Box>
                 <Box
                   sx={{
                     display: "flex",
                     gap: 1,
-                    pt: 6,
+                    pt: 4,
                   }}
                 >
-                  <Input
+                  <TextField
                     label="Text on the GiftCard (e.g. Happy Birthday)"
-                    labelBgColor={BG_COLOR}
+                    variant="outlined"
                     value={textValue}
+                    InputProps={{ style: { borderRadius: "10px" } }}
                     onChange={(e) => {
                       setTextValue(e.currentTarget.value);
                     }}
-                    style={{ flexGrow: 1 }}
+                    fullWidth
                   />
                   <Button
                     onClick={(e) => {
-                      console.log();
                       setTextValue(
                         RANDOM_WISHES[Math.round(Math.random() * 10)]
                       );
                     }}
-                    text="Random"
-                    theme="moneyPrimary"
-                  />
+                    variant="outlined"
+                    sx={{ borderRadius: "10px" }}
+                  >
+                    Random
+                  </Button>
                 </Box>
                 <Box
                   sx={{
@@ -487,10 +512,10 @@ const Mint = (props) => {
                             sx={{
                               backgroundColor: `#${item}`,
                               p: "12px",
-                              borderRadius: "15px",
+                              borderRadius: "10px",
                               border:
                                 i == pickedColorIndex
-                                  ? "2px solid #fff"
+                                  ? "1px solid #fff"
                                   : "none",
                             }}
                           >
@@ -508,23 +533,20 @@ const Mint = (props) => {
                     py: 2,
                   }}
                 >
-                  <ButtonBase
-                    sx={{ borderRadius: "10px" }}
+                  <Button
+                    sx={{
+                      borderRadius: "10px",
+                      border: mintDisabled()
+                        ? "1px solid transparent"
+                        : "1px solid",
+                    }}
+                    size="large"
+                    variant="outlined"
                     onClick={() => mintNft()}
                     disabled={mintDisabled()}
                   >
-                    <Paper
-                      sx={{
-                        backgroundColor: BG_COLOR,
-                        p: "12px",
-                        borderRadius: "10px",
-                        borderColor: "secondary",
-                        border: mintDisabled() ? "0px solid" : "2px solid",
-                      }}
-                    >
-                      Mint GiftCard NFT
-                    </Paper>
-                  </ButtonBase>
+                    Mint GiftCard NFT
+                  </Button>
                 </Box>
               </Grid>
               <Grid item md={6} xs={12}>
@@ -618,37 +640,38 @@ const Mint = (props) => {
         </Box>
         {isMinting && (
           <Modal
-            title={"Minting GiftCard"}
-            isVisible={isMinting}
-            id="MintingModal"
-            zIndex={9999}
-            customFooter={
-              <Box
-                sx={{
-                  p: 1,
-                  display: "flex",
-                  justifyContent: "center",
-                  width: "100%",
-                }}
-              >
+            open={isMinting}
+            onClose={() => !isMinting && setIsMinting(false)}
+            aria-labelledby="redeem-modal"
+          >
+            <Paper
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                ...MODAL_STYLE,
+              }}
+            ><Typography
+            variant="h6"
+            p={2}
+            borderBottom={"solid 1px #333333"}
+            width={"100%"}
+          >
+            Minting {ethValue} USD GiftCard NFT
+          </Typography>
+              <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
+                <Loading
+                  direction="right"
+                  spinnerColor="#ffffff"
+                  spinnerType="wave"
+                  size="large"
+                />
+              <Typography>
                 {isWaiting
                   ? "Transaction Received. Please be Pationt while Your NFT is minting ..."
                   : "Please Confirm The Transaction On Your Wallet ..."}
+              </Typography>
               </Box>
-            }
-            closeButton={<></>}
-            onCancel={function noRefCheck() {}}
-            onCloseButtonPressed={function noRefCheck() {}}
-            onOk={function noRefCheck() {}}
-          >
-            <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
-              <Loading
-                direction="right"
-                spinnerColor="#222222"
-                spinnerType="wave"
-                size="large"
-              />
-            </Box>
+            </Paper>
           </Modal>
         )}
       </Box>

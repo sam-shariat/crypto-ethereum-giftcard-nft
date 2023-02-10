@@ -71,7 +71,7 @@ const NavBar = ({}) => {
           </IconButton>
           <ButtonBase
             LinkComponent={NavLink}
-            to={"/cryptogiftcard/"}
+            to={"/crypto-ethereum-giftcard-nft/"}
             sx={{
               flexGrow: 1,
               py: 2,
@@ -108,12 +108,12 @@ const NavBar = ({}) => {
               </Button>
             ))}
           </Container>
-          <Tooltip title="Connect Your Wallet To Start">
+          <div className="walletconnectbutton">
             <ConnectButton
               signingMessage="Signing to CEGC"
               moralisAuth={false}
             />
-          </Tooltip>
+          </div>
         </Toolbar>
       </AppBar>
       <Box component="nav">
