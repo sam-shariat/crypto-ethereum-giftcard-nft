@@ -58,7 +58,7 @@
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## :computer: Building The Package
+## :briefcase: Building The Package
 
 - You need to add these configs to webpack for building this package
 - webpack.config.js can be found at node_modules/react-scripts/configs
@@ -77,7 +77,8 @@
         "stream": false,
         "crypto": false,
         "os": require.resolve("os-browserify/browser"),
-        "crypto-browserify": require.resolve('crypto-browserify'), //if you want to use this module also don't forget npm i crypto-browserify 
+        "crypto-browserify": require.resolve('crypto-browserify'),
+         // if you want to use this module also don't forget npm i crypto-browserify 
       }
 }
 ```
