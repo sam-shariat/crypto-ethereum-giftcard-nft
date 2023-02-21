@@ -5,11 +5,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import { MoralisProvider } from "react-moralis";
 import theme from "./theme";
 import App from "./App";
-import { NotificationProvider, Typography } from "web3uikit";
+import { NotificationProvider } from "web3uikit";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { TourProvider } from "@reactour/tour";
 import { GRAPH_URI, TOUR_STEPS } from "./constants/constants";
-import TourComponent from "./components/nav/TourComponent";
+import TourComponent from "./components/header/TourComponent";
+import { Provider } from "jotai";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
@@ -27,7 +28,9 @@ root.render(
       <ApolloProvider client={client}>
         <NotificationProvider>
           <TourProvider steps={TOUR_STEPS} ContentComponent={TourComponent}>
-            <App />
+            <Provider>
+              <App />
+            </Provider>
           </TourProvider>
         </NotificationProvider>
       </ApolloProvider>

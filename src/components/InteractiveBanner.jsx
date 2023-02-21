@@ -1,12 +1,9 @@
 import useScript from "../utils/useScript";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-const IntLogo = () => {
+const InteractiveBanner = () => {
   const theme = useTheme();
-  const md = useMediaQuery(theme.breakpoints.down("md"));
-  const lg = useMediaQuery(theme.breakpoints.down("lg"));
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
-  const xs = useMediaQuery(theme.breakpoints.down("xs"));
   useScript(
     "https://cloudflare-ipfs.com/ipfs/QmTKi9CpFecSfqmGt15bxL1WbFubb7t9DMZDoSHakC6a63"
   );
@@ -16,7 +13,7 @@ const IntLogo = () => {
       style={{
         width: "100%",
         zIndex: 99,
-        height: sm ? "360px" : "620px",
+        height: sm ? "360px" : "480px",
         margin: 0,
         padding: 0,
         overflow: "hidden",
@@ -44,4 +41,4 @@ const IntLogo = () => {
   );
 };
 
-export default IntLogo;
+export default InteractiveBanner;

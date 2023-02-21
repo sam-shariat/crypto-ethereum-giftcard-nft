@@ -1,13 +1,11 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { Helmet } from "react-helmet";
-import { Container, Grid, Link } from "@mui/material";
-import Copyright from "../components/nav/Copyright";
-import NavBar from "../components/nav/NavBar";
-import { SOCIAL_LINKS } from "../constants/constants";
+import { Container, Grid } from "@mui/material";
+import Copyright from "../components/header/Copyright";
+import NavBar from "../components/header/NavBar";
+import SocialButtons from "../components/SocialButtons";
+import HelmetHeader from "../components/header/HelmetHeader";
 
 const title = "About";
 
@@ -15,10 +13,7 @@ const About = (props) => {
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Cryptolyzed | {title} | Blockchain Analytics</title>
-        </Helmet>
+        <HelmetHeader title={title} />
         <NavBar />
         <Box component="main" sx={{ width: "100%", p: 3 }}>
           <Toolbar />
@@ -30,116 +25,47 @@ const About = (props) => {
                     sx={{ textAlign: "center" }}
                     variant="h3"
                     component="h1"
-                    align="center"
+                    fontWeight="bold"
                   >
-                    <b>Crypto GiftCard NFTs</b>
+                    Crypto GiftCard NFTs
                   </Typography>
                   <Typography
                     sx={{ py: 1, textAlign: "center" }}
                     variant="body1"
-                    align="center"
+                    fontWeight="bold"
                   >
-                    <b>Ethereum Redeemable NFT GiftCards</b>
+                    Ethereum Redeemable NFT GiftCards
                   </Typography>
                 </Box>
 
                 <Typography
-                  sx={{ py: 1, textAlign: "center" }}
+                  sx={{ py: 1, textAlign: "justify" }}
                   variant="h6"
-                  align="center"
+                  align="justify"
                 >
                   CEGC is a Decentralized Application where you can mint a
                   Ethereum GiftCard NFT for you or any wallet address, then you
                   can redeem the NFT and withdraw it to your wallet.
                 </Typography>
                 <Typography
-                  sx={{ py: 1, textAlign: "center" }}
+                  sx={{ py: 1, textAlign: "justify" }}
                   variant="h6"
-                  align="center"
                 >
                   This is Sam, This Dapp has been developed in Solidity,
                   React.js and TheGraph.
-                  <br />
+                  <p>
                   This is an Alpha version. New Features May be Added!
-                  <br />
-                  <br />
+                  </p>
                   Source Code is Available on <a href="#">Github</a>
                 </Typography>
                 <Typography
-                  sx={{ py: 1, textAlign: "center" }}
+                  sx={{ py: 2 }}
                   variant="h5"
-                  align="center"
                 >
-                  Stay Tuned
-                </Typography>
-                <Typography
-                  sx={{ py: 2, textAlign: "center" }}
-                  variant="body1"
-                  align="center"
-                >
-                  Drop me a message if you have any questions!
+                  Stay Tuned 🤘
                 </Typography>
               </Grid>
-              <Grid item md={4} xs={12}>
-                <Button
-                  LinkComponent={Link}
-                  href={SOCIAL_LINKS.twitter}
-                  target={"_blank"}
-                  variant="outlined"
-                  sx={{ height: 120, width: "100%" }}
-                  fullWidth
-                >
-                  <Typography
-                    sx={{ p: 8, textAlign: "center" }}
-                    variant="h4"
-                    component="h1"
-                    align="center"
-                    fullWidth
-                  >
-                    <b>Twitter</b>
-                  </Typography>
-                </Button>
-              </Grid>
-              <Grid item md={4} xs={12}>
-                <Button
-                  LinkComponent={Link}
-                  href={SOCIAL_LINKS.email}
-                  target={"_blank"}
-                  variant="outlined"
-                  sx={{ height: 120 }}
-                  fullWidth
-                >
-                  <Typography
-                    sx={{ p: 8, textAlign: "center" }}
-                    variant="h4"
-                    component="h1"
-                    align="center"
-                    fullWidth
-                  >
-                    <b>Email</b>
-                  </Typography>
-                </Button>
-              </Grid>
-              <Grid item md={4} xs={12}>
-                <Button
-                  LinkComponent={Link}
-                  href={SOCIAL_LINKS.github}
-                  target={"_blank"}
-                  variant="outlined"
-                  sx={{ height: 120 }}
-                  fullWidth
-                >
-                  <Typography
-                    sx={{ p: 8, textAlign: "center" }}
-                    variant="h4"
-                    component="h1"
-                    align="center"
-                    fullWidth
-                  >
-                    <b>Github</b>
-                  </Typography>
-                </Button>
-              </Grid>
+              <SocialButtons />
             </Grid>
           </Container>
         </Box>

@@ -1,19 +1,32 @@
 import * as React from "react";
 import { Paper, Box, ButtonBase, IconButton, Button } from "@mui/material";
 import { Loading, Tooltip, Typography } from "web3uikit";
-import { BG_COLOR, BORDER_COLOR } from "../constants/constants";
-import Web3 from "web3";
 import { Info } from "@mui/icons-material";
-const web3 = new Web3(Web3.givenProvider);
+import { useSetAtom } from "jotai";
+import { redeemIndexAtom, redeemStatusAtom, transferIndexAtom, transferStatusAtom } from "../constants/atoms";
 
 export default function GiftCard({
   uri,
   nft,
   values,
   index,
-  onRedeemClick,
-  onTransferClick,
 }) {
+
+  const setRedeemIndex = useSetAtom(redeemIndexAtom);
+  const setTransferIndex = useSetAtom(transferIndexAtom);
+  const setRedeemStatus = useSetAtom(redeemStatusAtom);
+  const setTransferStatus = useSetAtom(transferStatusAtom);
+  
+  function setTokenIdAndRedeem(i) {
+    setRedeemIndex(i);
+    setRedeemStatus("REDEEMING");
+  }
+
+  async function setTokenIdAndTransfer(i) {
+    setTransferIndex(i);
+    setTransferStatus("TRANSFERRING");
+  }
+
   return (
     <Paper
       sx={{
@@ -25,7 +38,7 @@ export default function GiftCard({
       }}
     >
       <Box container>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", justifyContent:"center" }}>
           <Box>
             {uri ? (
               <img
@@ -34,14 +47,15 @@ export default function GiftCard({
                 style={{ borderRadius: "10px" }}
               />
             ) : (
-              <center>
+              <Box display="flex" justifyContent="center" height="200px">
                 <Loading
                   direction="right"
                   spinnerColor="#ffffff"
                   spinnerType="wave"
                   size="large"
                 />
-              </center>
+              </Box>
+              
             )}
           </Box>
 
@@ -75,7 +89,7 @@ export default function GiftCard({
               <ButtonBase
                 sx={{ borderRadius: "10px", mt: 3 }}
                 value={index}
-                onClick={(e) => onRedeemClick(e.currentTarget.value)}
+                onClick={(e) => setTokenIdAndRedeem(e.currentTarget.value)}
                 disabled={nft.isRedeemed}
               >
                 <Button
@@ -91,7 +105,7 @@ export default function GiftCard({
             <ButtonBase
               sx={{ borderRadius: "10px", mt: 3 }}
               value={index}
-              onClick={(e) => onTransferClick(e.currentTarget.value)}
+              onClick={(e) => setTokenIdAndTransfer(e.currentTarget.value)}
               >
                 <Button
                   sx={{

@@ -1,9 +1,14 @@
 import * as React from "react";
 import { Grid } from "@mui/material";
+import { useAtomValue } from "jotai";
+import { colorAtom, ethValueAtom, mintText } from "../constants/atoms";
 
-export default function GiftCardSVG({ value, color, text }) {
+export default function GiftCardSVG({ sx = {} }) {
+  const color = useAtomValue(colorAtom);
+  const value = useAtomValue(ethValueAtom);
+  const text = useAtomValue(mintText);
   return (
-    <Grid container>
+    <Grid container sx={{...sx,pb:1}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"

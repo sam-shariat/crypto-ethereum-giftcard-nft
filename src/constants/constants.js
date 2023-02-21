@@ -38,19 +38,20 @@ const NAV_ITEMS = [
   },
   {
     name: "github",
-    url: "https://github.com/sam-shariat/crypto-ethereum-giftcard-nft"
-  }
+    url: "https://github.com/sam-shariat/crypto-ethereum-giftcard-nft",
+  },
 ];
 
 const SOCIAL_LINKS = {
   email: "mailto:moslem.shariat@gmail.com",
   twitter: "https://twitter.com/samywalters",
-  github: "https://github.com/sam-shariat/crypto-ethereum-giftcard-nft"
-}
+  github: "https://github.com/sam-shariat/crypto-ethereum-giftcard-nft",
+};
 
 const GRAPH_URI =
   "https://api.studio.thegraph.com/query/40816/giftcardnft/v0.0.2";
 
+const OPENSEA_ASSET_URL = "https://testnets.opensea.io/assets/goerli";
 export {
   BG_COLOR,
   RANDOM_WISHES,
@@ -59,5 +60,6 @@ export {
   MODAL_STYLE,
   TOUR_STEPS,
   GRAPH_URI,
-  SOCIAL_LINKS
+  SOCIAL_LINKS,
+  OPENSEA_ASSET_URL,
 };

@@ -65,7 +65,7 @@
 ## :briefcase: Building The Package
 
 - You need to add these configs to webpack for building this package
-- webpack.config.js can be found at node_modules/react-scripts/configs
+- webpack.config.js can be found at node_modules/react-scripts/config
 
 ```
 { ...currentConfig,
