@@ -1,0 +1,1 @@
+(self.webpackChunkcrypto_ethereum_giftcard_nft=self.webpackChunkcrypto_ethereum_giftcard_nft||[]).push([[978],{50522:function(){},66882:function(){}}]);
