@@ -1,11 +1,7 @@
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import {Grid, Container,Typography,Box} from "@mui/material";
 import Copyright from "../components/header/Copyright";
-import { Grid } from "@mui/material";
-import InteractiveBanner from "../components/InteractiveBanner";
+import {InteractiveBanner,HomeNavButtons} from "../components";
 import bgimage from "../img/background-cryptolyzed.jpg";
-import HomeNavButtons from "../components/HomeNavButtons";
 
 const Home = () => {
   return (
@@ -22,13 +18,7 @@ const Home = () => {
           container
           spacing={2}
           sx={{
-            pt: {
-              xs: "300px",
-              sm: "300px",
-              md: "470px",
-              lg: "470px",
-              xl: "470px",
-            },
+            pt: '250px'
           }}
         >
           <Grid item md={12} xl={12} xs={12}>
